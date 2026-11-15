@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#0b0824">
+
+    <title>Uma surpresinha para o meu amor ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TELA INICIAL -->
+
+    <main id="inicio" class="inicio">
+
+        <div>
+            <span class="emoji">🌙✨</span>
+
+            <h1>
+                Uma surpresinha para o meu amor ❤️🌹
+            </h1>
+
+            <button id="abrir" type="button">
+                Abrir minha surpresa 💜
+            </button>
+        </div>
+
+    </main>
+
+
+    <!-- CENÁRIO ROMÂNTICO -->
+
+    <section
+        id="cenario"
+        class="cenario"
+        aria-label="Surpresa romântica animada"
+        hidden
+    >
+
+        <!-- CÉU E LUA -->
+
+        <div class="paisagem"></div>
+
+        <img
+            class="lua"
+            src="assets/lua.png"
+            alt="Lua lilás"
+        >
+
+
+        <!-- ESTRELAS -->
+
+        <div id="estrelas" class="estrelas"></div>
+
+        <div id="cadentes" class="cadentes"></div>
+
+
+        <!-- PALCO DOS PERSONAGENS -->
+
+        <div id="palco" class="palco">
+
+            <!-- RAPAZ -->
+
+            <div id="rapaz" class="personagem rapaz">
+
+                <img
+                    class="corpo"
+                    src="assets/rapaz.png"
+                    alt="Rapaz cacheado"
+                >
+
+                <img
+                    class="braco braco-rapaz"
+                    src="assets/braco-rapaz.png"
+                    alt=""
+                >
+
+            </div>
+
+
+            <!-- GAROTA -->
+
+            <div id="garota" class="personagem garota">
+
+                <img
+                    class="corpo"
+                    src="assets/garota.png"
+                    alt="Garota cacheada"
+                >
+
+                <img
+                    class="braco braco-garota"
+                    src="assets/braco-garota.png"
+                    alt=""
+                >
+
+            </div>
+
+
+            <!-- ROSA QUE VAI FLORESCER -->
+
+            <div id="flor" class="flor">
+
+                <img
+                    id="florImagem"
+                    src="assets/rosa.png"
+                    alt="Rosa lilás"
+                >
+
+            </div>
+
+
+            <!-- PÉTALAS ANIMADAS -->
+
+            <div
+                id="particulas"
+                class="particulas"
+            ></div>
+
+        </div>
+
+
+        <!-- DECLARAÇÃO FINAL -->
+
+        <div
+            id="declaracao"
+            class="declaracao"
+            aria-live="polite"
+        >
+
+            <p id="frase"></p>
+
+            <span id="coracao" class="coracao">
+                ♥
+            </span>
+
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

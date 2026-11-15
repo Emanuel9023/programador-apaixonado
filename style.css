@@ -1,0 +1,713 @@
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: #0b0824;
+    color: #f8eaff;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* TELA INICIAL */
+
+.inicio {
+    position: fixed;
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+
+    padding: 24px;
+    text-align: center;
+
+    background: radial-gradient(
+        circle at 50% 70%,
+        #5b418b,
+        #17102f 65%,
+        #080719
+    );
+}
+
+.inicio > div {
+    max-width: 560px;
+}
+
+.emoji {
+    font-size: 48px;
+}
+
+.inicio h1 {
+    font-size: clamp(25px, 5vw, 40px);
+    line-height: 1.45;
+    font-weight: normal;
+    text-shadow: 0 0 20px #bd94ef;
+}
+
+button {
+    cursor: pointer;
+    margin-top: 22px;
+
+    border: 1px solid #e2c5ff;
+    background: #8162b5;
+    color: white;
+
+    border-radius: 40px;
+    padding: 16px 28px;
+    font-size: 17px;
+
+    box-shadow: 0 0 24px #bd94ef66;
+}
+
+/* CENÁRIO */
+
+.cenario {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    background: #0b0824;
+}
+
+.cenario[hidden] {
+    display: none;
+}
+
+/* PAISAGEM */
+
+.paisagem {
+    position: absolute;
+    inset: 0;
+
+    background: url("assets/ceu.png")
+        center center / cover no-repeat;
+
+    opacity: 0;
+
+    animation: aparecer 3.5s forwards;
+}
+
+/* LUA */
+
+.lua {
+    position: absolute;
+
+    left: 50%;
+    top: 43%;
+
+    width: min(36vw, 62vh);
+    aspect-ratio: 1;
+
+    object-fit: contain;
+
+    transform: translate(-50%, 110vh);
+
+    filter: drop-shadow(
+        0 0 16px #d5adff66
+    );
+
+    animation: nascer 5s ease-out forwards;
+}
+
+/* ESTRELAS */
+
+.estrelas,
+.cadentes {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+    z-index: 2;
+}
+
+.estrela {
+    position: absolute;
+
+    width: var(--size);
+    height: var(--size);
+
+    border-radius: 50%;
+    background: #fff;
+
+    box-shadow: 0 0 9px #dac6ff;
+
+    animation: piscar var(--dur)
+        ease-in-out var(--delay)
+        infinite alternate;
+}
+
+/* ESTRELAS CADENTES */
+
+.cadente {
+    position: absolute;
+
+    width: 110px;
+    height: 2px;
+
+    border-radius: 4px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #bfa4ff,
+        #fff
+    );
+
+    box-shadow: 0 0 10px #bfa4ff;
+
+    opacity: 0;
+
+    transform: rotate(-30deg);
+
+    animation: cadente 9s linear
+        var(--delay) infinite;
+}
+
+/* PALCO DOS PERSONAGENS */
+
+.palco {
+    position: absolute;
+
+    left: 50%;
+    bottom: 5%;
+
+    width: min(48vw, 650px);
+    height: min(60vh, 520px);
+
+    transform: translateX(-50%);
+
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* PERSONAGENS */
+
+.personagem {
+    position: absolute;
+    bottom: 0;
+
+    width: 44%;
+    height: 100%;
+
+    opacity: 0;
+
+    will-change: transform;
+}
+
+.personagem .corpo {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: bottom center;
+
+    filter: drop-shadow(
+        0 0 4px #bfa6f955
+    );
+}
+
+/* RAPAZ */
+
+.rapaz {
+    left: 4%;
+    transform: translateX(-110vw);
+}
+
+.rapaz.andar {
+    animation: entrarRapaz
+        4s ease-in-out forwards;
+}
+
+/* GAROTA */
+
+.garota {
+    right: 4%;
+    transform: translateX(110vw);
+}
+
+.garota.andar {
+    animation: entrarGarota
+        4s ease-in-out forwards;
+}
+
+/* BRAÇOS ARTICULADOS */
+
+.braco {
+    position: absolute;
+
+    object-fit: contain;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.braco-rapaz {
+    width: 62%;
+    height: 29%;
+
+    top: 33%;
+    left: 54%;
+
+    transform-origin: 20% 65%;
+    transform: rotate(-25deg);
+}
+
+.braco-garota {
+    width: 50%;
+    height: 25%;
+
+    top: 37%;
+    left: -16%;
+
+    transform-origin: 75% 70%;
+    transform: rotate(25deg);
+}
+
+.rapaz.entregar .braco-rapaz {
+    opacity: 1;
+
+    animation: estenderRapaz
+        1.4s ease-in-out forwards;
+}
+
+.garota.receber .braco-garota {
+    opacity: 1;
+
+    animation: estenderGarota
+        1.4s ease-in-out forwards;
+}
+
+/* ROSA */
+
+.flor {
+    position: absolute;
+
+    left: 49%;
+    top: 47%;
+
+    height: 29%;
+    width: 14%;
+
+    opacity: 0;
+
+    transform: translate(-50%, -50%);
+    transform-origin: 50% 90%;
+
+    filter: drop-shadow(
+        0 0 5px #a882e9aa
+    );
+}
+
+.flor img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.flor.visivel {
+    opacity: 1;
+}
+
+.flor.entrega {
+    animation: entregarFlor
+        1.5s ease-in-out forwards;
+}
+
+.flor.florescer {
+    animation: brilhoFlor
+        2.4s ease-in-out infinite;
+}
+
+/* PÉTALAS */
+
+.particulas {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.petala {
+    position: absolute;
+
+    left: 52%;
+    top: 40%;
+
+    width: 8px;
+    height: 12px;
+
+    background: #dcaeff;
+
+    border-radius: 70% 10% 70% 10%;
+
+    box-shadow: 0 0 9px #e4b6ff;
+
+    opacity: 0;
+
+    animation: voar 2s ease-out
+        var(--delay) forwards;
+}
+
+/* DECLARAÇÃO */
+
+.declaracao {
+    position: absolute;
+
+    top: 4%;
+    left: 50%;
+
+    width: min(90%, 790px);
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    z-index: 6;
+    pointer-events: none;
+}
+
+.declaracao p {
+    margin: 0;
+
+    font-size: clamp(18px, 2.5vw, 32px);
+    line-height: 1.4;
+    font-style: italic;
+
+    color: #f1d9ff;
+
+    text-shadow:
+        0 0 8px #d8a3ff,
+        0 0 20px #ae7bff;
+}
+
+.coracao {
+    display: inline-block;
+
+    font-size: 32px;
+    opacity: 0;
+
+    color: #f6c9ff;
+}
+
+.coracao.ativo {
+    opacity: 1;
+
+    animation: pulsar
+        1.6s ease-in-out infinite;
+}
+
+/* ANIMAÇÕES */
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes nascer {
+    0% {
+        transform: translate(-50%, 110vh);
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes entrarRapaz {
+    0% {
+        opacity: 0;
+        transform: translateX(-110vw);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes entrarGarota {
+    0% {
+        opacity: 0;
+        transform: translateX(110vw);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes estenderRapaz {
+    to {
+        transform: rotate(8deg);
+    }
+}
+
+@keyframes estenderGarota {
+    to {
+        transform: rotate(-9deg);
+    }
+}
+
+@keyframes entregarFlor {
+    0% {
+        transform:
+            translate(-70%, -50%)
+            rotate(-8deg);
+    }
+
+    100% {
+        transform:
+            translate(-15%, -50%)
+            rotate(8deg);
+    }
+}
+
+@keyframes brilhoFlor {
+    50% {
+        filter: drop-shadow(
+            0 0 19px #e6b6ff
+        );
+
+        transform:
+            translate(-15%, -50%)
+            scale(1.13);
+    }
+}
+
+@keyframes piscar {
+    from {
+        opacity: 0.25;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.6);
+    }
+}
+
+@keyframes cadente {
+    0%, 50% {
+        opacity: 0;
+        translate: 0 0;
+    }
+
+    55% {
+        opacity: 1;
+    }
+
+    72%, 100% {
+        opacity: 0;
+        translate: -260px 145px;
+    }
+}
+
+@keyframes voar {
+    0% {
+        opacity: 1;
+        transform:
+            translate(0, 0)
+            rotate(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(var(--dx), var(--dy))
+            rotate(var(--rot));
+    }
+}
+
+@keyframes pulsar {
+    50% {
+        transform: scale(1.25);
+        text-shadow: 0 0 24px #edb7ff;
+    }
+}
+
+/* CELULARES */
+
+@media (max-aspect-ratio: 3/4) {
+
+    .paisagem {
+        background-position: center;
+    }
+
+    .lua {
+        width: min(84vw, 48vh);
+        top: 44%;
+    }
+
+    .palco {
+        width: min(94vw, 470px);
+        height: min(43vh, 440px);
+        bottom: 11%;
+    }
+
+    .personagem {
+        width: 46%;
+    }
+
+    .rapaz {
+        left: 1%;
+    }
+
+    .garota {
+        right: 1%;
+    }
+
+    .declaracao {
+        top: 7%;
+        width: 94%;
+    }
+
+    .declaracao p {
+        font-size: clamp(17px, 4.6vw, 24px);
+    }
+
+    .flor {
+        height: 27%;
+        width: 16%;
+    }
+}
+
+/* NOVA ENTREGA MÁGICA DA ROSA */
+
+/* Esconde completamente os braços artificiais */
+.braco,
+.braco-rapaz,
+.braco-garota {
+    display: none !important;
+}
+
+/* Rosa começa perto do rapaz */
+.flor {
+    left: 43%;
+    top: 49%;
+    width: 12%;
+    height: 27%;
+
+    opacity: 0;
+    transform: translate(-50%, -50%);
+
+    transition: none;
+}
+
+.flor.visivel {
+    opacity: 1;
+}
+
+/* Rosa flutua até a garota */
+.flor.flutuando {
+    animation: rosaFlutuando 3.5s
+        ease-in-out forwards;
+}
+
+@keyframes rosaFlutuando {
+    0% {
+        left: 43%;
+        top: 49%;
+        transform:
+            translate(-50%, -50%)
+            rotate(-8deg);
+    }
+
+    30% {
+        left: 48%;
+        top: 39%;
+        transform:
+            translate(-50%, -50%)
+            rotate(5deg);
+    }
+
+    65% {
+        left: 55%;
+        top: 40%;
+        transform:
+            translate(-50%, -50%)
+            rotate(-4deg);
+    }
+
+    100% {
+        left: 60%;
+        top: 49%;
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+}
+
+/* Rosa permanece na posição final */
+.flor.entregue {
+    left: 60%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+    animation: none;
+}
+
+/* Florescimento */
+.flor.entregue.florescer {
+    animation: florescimentoMagico 2.2s
+        ease-in-out infinite;
+}
+
+@keyframes florescimentoMagico {
+    0%, 100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+        filter: drop-shadow(0 0 8px #d8a6ff);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.12);
+        filter: drop-shadow(0 0 22px #eac5ff);
+    }
+}
+
+/* Partículas acompanhando a rosa */
+.petala {
+    z-index: 5;
+}
+
+@media (max-aspect-ratio: 3/4) {
+    .flor {
+        width: 15%;
+        height: 25%;
+    }
+}

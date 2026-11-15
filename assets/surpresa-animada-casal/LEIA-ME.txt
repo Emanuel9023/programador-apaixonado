@@ -1,0 +1,1 @@
+PACOTE EXPERIMENTAL: recortes feitos a partir do PNG transparente existente. Os braços sao aproximacoes visuais e podem nao encaixar perfeitamente. Para usar: extraia o ZIP, abra index.html no Chrome. Para integrar ao projeto atual, substitua index.html, style.css, script.js e copie a pasta assets. O circulo ao redor da lua pode continuar embutido em ceu.png.
